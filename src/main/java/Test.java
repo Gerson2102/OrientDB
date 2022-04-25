@@ -1,4 +1,5 @@
 import GUI.Interfaz;
+import GUI.InterfazPrincipal;
 import com.orientechnologies.orient.core.db.ODatabaseSession;
 import com.orientechnologies.orient.core.db.OrientDB;
 import com.orientechnologies.orient.core.db.OrientDBConfig;
@@ -15,10 +16,10 @@ public class Test {
 //        animal.field("location", "Guácimo");
 //        animal.save();
 //
-//        //let's do something with this server!
+        //let's do something with this server!
 //        db.close();
 //        orient.close();
 
-        Interfaz interfaz = new Interfaz();
+        InterfazPrincipal interfazPrincipal = new InterfazPrincipal();
     }
 }
