@@ -1,6 +1,7 @@
 package GUI;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,9 +14,12 @@ public class InterfazPrincipal extends JFrame{
     private JButton modificarButton;
     private JButton crearButton;
     private JButton eliminarButton;
-    private JTable table1;
     private JTextField textField1;
     private JPanel Main;
+    public JTable table1;
+    public DefaultTableModel modelo = null;
+
+
 
     public InterfazPrincipal() {
         setContentPane(Main);
@@ -47,5 +51,9 @@ public class InterfazPrincipal extends JFrame{
 
             }
         });
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }
