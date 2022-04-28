@@ -6,7 +6,6 @@ import com.orientechnologies.orient.core.db.OrientDB;
 import com.orientechnologies.orient.core.db.OrientDBConfig;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
@@ -59,9 +58,6 @@ public class InterfazPrincipal extends JFrame{
     }
 
 
-
-
-
     public void Interfaz() {
         setContentPane(Main);
         setTitle("CRUD OrientDB");
@@ -75,38 +71,51 @@ public class InterfazPrincipal extends JFrame{
         crearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Orient conection = new Orient();
-                cedula = cedulaC.getText();
-                nombre = nombreC.getText();
-                apellido = apellidoC.getText();
-                correo = correoC.getText();
-                cedulaC.setText("");
-                nombreC.setText("");
-                apellidoC.setText("");
-                correoC.setText("");
-
-                conection.insert(cedula,nombre,apellido,correo);
-                data();
-
+                if (!(cedulaC.getText().toString().equals("")) && !(nombreC.getText().toString().equals("")) &&
+                        !(apellidoC.getText().toString().equals("")) && !(correoC.getText().toString().equals(""))) {
+                    Orient conection = new Orient();
+                    cedula = cedulaC.getText();
+                    nombre = nombreC.getText();
+                    apellido = apellidoC.getText();
+                    correo = correoC.getText();
+                    cedulaC.setText("");
+                    nombreC.setText("");
+                    apellidoC.setText("");
+                    correoC.setText("");
+                    conection.insert(cedula, nombre, apellido, correo);
+                    data();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "No se permiten campos vacios", "Información", JOptionPane.INFORMATION_MESSAGE);
+                }
 
             }
+
         });
+
+
         modificarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cedulaC.setEnabled(true);
-                nombreC.setEnabled(true);
-                apellidoC.setEnabled(true);
-                modificarButton.setEnabled(false);
-                eliminarButton.setEnabled(false);
-                crearButton.setEnabled(true);
-                Orient conection = new Orient();
-                correo = correoC.getText();
-                correoC.setText("");
-                textField1.setText("");
-                conection.actualizar(dato,correo);
-                dato="";
-                data();
+                if (!(correoC.getText().toString().equals(""))){
+                    cedulaC.setEnabled(true);
+                    nombreC.setEnabled(true);
+                    apellidoC.setEnabled(true);
+                    modificarButton.setEnabled(false);
+                    eliminarButton.setEnabled(false);
+                    crearButton.setEnabled(true);
+                    Orient conection = new Orient();
+                    correo = correoC.getText();
+                    correoC.setText("");
+                    textField1.setText("");
+                    conection.actualizar(dato,correo);
+                    dato="";
+                    data();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Porfavor ingrese el correo", "Información", JOptionPane.INFORMATION_MESSAGE);
+                }
+
 
 
 
@@ -159,6 +168,5 @@ public class InterfazPrincipal extends JFrame{
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 }
